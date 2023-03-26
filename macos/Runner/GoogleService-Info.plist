@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>811327847815-fpa5mr440vrpl863k2ojuuof970edejh.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.811327847815-fpa5mr440vrpl863k2ojuuof970edejh</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDj5CwBfIk6I1CVAQJm3srmDUoP_jLnWHU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>811327847815</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>rent.clothes.clothesapp</string>
+	<key>PROJECT_ID</key>
+	<string>clothes-renting-project</string>
+	<key>STORAGE_BUCKET</key>
+	<string>clothes-renting-project.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:811327847815:ios:5f3d4c9e3490027c0fa722</string>
+</dict>
+</plist>

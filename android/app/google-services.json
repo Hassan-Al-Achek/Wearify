@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "811327847815",
+    "project_id": "clothes-renting-project",
+    "storage_bucket": "clothes-renting-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811327847815:android:02c326fa0cbc15e80fa722",
+        "android_client_info": {
+          "package_name": "rent.clothes.clothesapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811327847815-ehddkdr4cl2of2qdnmp1uelacbr0l66c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBx3clK_zRN71JyGdsdRb-gLuLPP8ibX1M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811327847815-ehddkdr4cl2of2qdnmp1uelacbr0l66c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
