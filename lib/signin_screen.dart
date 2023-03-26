@@ -1,6 +1,7 @@
 import 'package:clothesapp/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -13,6 +14,7 @@ class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _signInFormKey = GlobalKey<FormState>();
+  bool _isPasswordVisible = false;
 
   Future<void> _signIn() async {
     if (_signInFormKey.currentState!.validate()) {
@@ -50,7 +52,10 @@ class _SignInScreenState extends State<SignInScreen> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: TextFormField(
-                  validator: ,
+                  validator: MultiValidator([
+                    RequiredValidator(errorText: '* Required'),
+                    EmailValidator(errorText: "Enter a valid email address"),
+                  ]),
                   controller: _emailController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
@@ -64,13 +69,30 @@ class _SignInScreenState extends State<SignInScreen> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: TextFormField(
+                  validator: MultiValidator([
+                    RequiredValidator(errorText: "* Required"),
+                    MinLengthValidator(
+                      8,
+                      errorText: "Password should be atleast 8 characters",
+                    ),
+                  ]),
                   controller: _passwordController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
                     labelText: 'Password',
+                    suffixIcon: IconButton(
+                      icon: Icon(_isPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off),
+                      onPressed: () {
+                        setState(() {
+                          _isPasswordVisible = !_isPasswordVisible;
+                        });
+                      },
+                    ),
                     hintText: '',
                   ),
-                  obscureText: true,
+                  obscureText: _isPasswordVisible,
                 ),
               ),
 
