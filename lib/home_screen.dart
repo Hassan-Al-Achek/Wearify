@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'glassmorphic_bottom_navigation_bar.dart';
 
 class NavigtionBarWidget extends StatefulWidget {
   const NavigtionBarWidget({super.key});
@@ -46,7 +47,7 @@ class _NavigtionBarWidgetState extends State<NavigtionBarWidget> {
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: GlassmorphicBottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
@@ -75,7 +76,6 @@ class _NavigtionBarWidgetState extends State<NavigtionBarWidget> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.white,
         onTap: _onItemTapped,
       ),
     );

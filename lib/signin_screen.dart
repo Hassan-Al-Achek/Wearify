@@ -74,8 +74,8 @@ class _SignInScreenState extends State<SignInScreen> {
               child: SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20),
                       child: Text(
                         'Sign In',
                         style: TextStyle(
