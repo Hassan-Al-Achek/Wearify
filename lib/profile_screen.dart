@@ -27,45 +27,39 @@ class _ProfileScreenState extends State<ProfileScreen> {
     CollectionReference clientsCollection =
         FirebaseFirestore.instance.collection('clients');
 
-    return WillPopScope(
-      onWillPop: () async {
-        await _signOut();
-        return false;
-      },
-      child: Scaffold(
-        appBar: AppBar(title: const Text('Profile Screen')),
-        body: StreamBuilder<DocumentSnapshot>(
-          stream: clientsCollection.doc(currentUser.uid).snapshots(),
-          builder:
-              (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-            if (snapshot.hasError) {
-              return const Text('Something went wrong');
-            }
+    return Scaffold(
+      appBar: AppBar(title: const Text('Profile Screen')),
+      body: StreamBuilder<DocumentSnapshot>(
+        stream: clientsCollection.doc(currentUser.uid).snapshots(),
+        builder:
+            (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return const Text('Something went wrong');
+          }
 
-            // Loading screen if data not ready to be displayed
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
-            }
+          // Loading screen if data not ready to be displayed
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator();
+          }
 
-            Map<String, dynamic> userData =
-                snapshot.data!.data() as Map<String, dynamic>;
-            return ListView(
-              padding: const EdgeInsets.all(16.0),
-              children: [
-                Text('Username: ${userData['username']}'),
-                Text('First Name: ${userData['first_name']}'),
-                Text('Last Name: ${userData['last_name']}'),
-                Text('Email: ${userData['email']}'),
-                Text('Phone Number: ${userData['phone_number']}'),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: _signOut,
-                  child: const Text('Log Out'),
-                ),
-              ],
-            );
-          },
-        ),
+          Map<String, dynamic> userData =
+              snapshot.data!.data() as Map<String, dynamic>;
+          return ListView(
+            padding: const EdgeInsets.all(16.0),
+            children: [
+              Text('Username: ${userData['username']}'),
+              Text('First Name: ${userData['first_name']}'),
+              Text('Last Name: ${userData['last_name']}'),
+              Text('Email: ${userData['email']}'),
+              Text('Phone Number: ${userData['phone_number']}'),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _signOut,
+                child: const Text('Log Out'),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

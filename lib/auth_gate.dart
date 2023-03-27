@@ -3,13 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:clothesapp/home_screen.dart';
 import 'package:clothesapp/signin_screen.dart';
 
-// * Make sure that the user is logged in
-// * Before navigating to the home screen
-// * The AuthGate will credirect the user
-// * to the signin screen if the user is
-// * not logged in or tp the Home screen
-// * if the user is logged in
-
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});
 
@@ -18,6 +11,10 @@ class AuthGate extends StatelessWidget {
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        }
+
         if (!snapshot.hasData) {
           return const SignInScreen();
         }
