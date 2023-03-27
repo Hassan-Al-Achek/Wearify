@@ -103,7 +103,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       // Navigate to the next screen (e.g. home screen) after successful sign-up
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const MyHome()),
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
       );
     } on FirebaseAuthException catch (e) {
       // Show an error message if there's an exception

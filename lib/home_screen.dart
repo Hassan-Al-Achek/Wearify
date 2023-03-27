@@ -82,15 +82,11 @@ class _NavigtionBarWidgetState extends State<NavigtionBarWidget> {
   }
 }
 
-class MyHome extends StatelessWidget {
-  const MyHome({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return (const NavigtionBarWidget());
   }
 }
-
-// void main(List<String> args) {
-//   // runApp();
-// }

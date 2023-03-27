@@ -44,6 +44,8 @@ dependencies:
   intl: ^0.17.0
   intl_phone_number_input: ^0.7.2
   firebase_analytics: ^10.1.6
+  flutterfire_ui: ^0.4.3+20
+  glassmorphism: ^3.0.0
 
 dev_dependencies:
   flutter_test:

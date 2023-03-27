@@ -1,18 +1,31 @@
-import 'package:clothesapp/home_screen.dart';
-import 'package:clothesapp/signin_screen.dart';
-import 'package:clothesapp/signup_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:clothesapp/auth_gate.dart';
+import 'firebase_options.dart';
+import 'package:clothesapp/app_theme.dart';
 
 Future<void> main(List<String> args) async {
   // Initialize Firebase
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(
-    const MaterialApp(
+    MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyHome(),
+      theme: ThemeData(
+        scaffoldBackgroundColor: backgroundColor,
+        primaryColor: primaryColor,
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(color: textColor),
+          bodyMedium: TextStyle(color: textColor),
+          titleMedium: TextStyle(color: subduedTextColor),
+        ),
+        colorScheme:
+            ColorScheme.fromSwatch().copyWith(secondary: secondaryColor),
+      ),
+      home: const AuthGate(),
     ),
   );
 }
