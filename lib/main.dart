@@ -1,3 +1,4 @@
+import 'package:clothesapp/home_screen.dart';
 import 'package:clothesapp/signin_screen.dart';
 import 'package:clothesapp/signup_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -11,7 +12,7 @@ Future<void> main(List<String> args) async {
   runApp(
     const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignUpScreen(),
+      home: MyHome(),
     ),
   );
 }
