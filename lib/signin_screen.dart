@@ -69,13 +69,15 @@ class _SignInScreenState extends State<SignInScreen> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: TextFormField(
-                  validator: MultiValidator([
-                    RequiredValidator(errorText: "* Required"),
-                    MinLengthValidator(
-                      8,
-                      errorText: "Password should be atleast 8 characters",
-                    ),
-                  ]),
+                  validator: MultiValidator(
+                    [
+                      RequiredValidator(errorText: "* Required"),
+                      MinLengthValidator(
+                        8,
+                        errorText: "Password should be atleast 8 characters",
+                      ),
+                    ],
+                  ),
                   controller: _passwordController,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
