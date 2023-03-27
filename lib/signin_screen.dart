@@ -30,7 +30,7 @@ class _SignInScreenState extends State<SignInScreen> {
         // Navigate to the next screen or show a success message
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const ProfileScreen()),
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
         );
       } on FirebaseAuthException catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
