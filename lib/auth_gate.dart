@@ -1,4 +1,3 @@
-import 'package:clothesapp/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:clothesapp/home_screen.dart';
@@ -23,7 +22,7 @@ class AuthGate extends StatelessWidget {
           return const SignInScreen();
         }
 
-        return const ProfileScreen();
+        return const HomeScreen();
       },
     );
   }
