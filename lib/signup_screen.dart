@@ -7,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:random_avatar/random_avatar.dart';
 
 class usernameValidator extends TextFieldValidator {
   usernameValidator(super.errorText);
@@ -85,6 +86,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
           .createUserWithEmailAndPassword(
               email: _emailController.text, password: _passwordController.text);
 
+      // * Generate simple avatar for each new user
+      String userAvatar = randomAvatarString(
+        DateTime.now().toIso8601String(),
+      );
+
       // Save the user's additional information in Firestore
       await FirebaseFirestore.instance
           .collection('clients')
@@ -97,6 +103,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         'phone_number': _formattedPhoneNumber,
         'date_of_birth': _selectedDateOfBirth,
         'gender': _selectedGender,
+        'user_avatar': userAvatar.hashCode,
         // Add the address info (e.g. 'address': _selectedAddress)
       });
 

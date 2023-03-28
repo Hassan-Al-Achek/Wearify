@@ -1,3 +1,4 @@
+import 'package:clothesapp/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'glassmorphic_bottom_navigation_bar.dart';
 
@@ -29,10 +30,7 @@ class _NavigtionBarWidgetState extends State<NavigtionBarWidget> {
       'Index 3: Top Donators',
       style: optionStyle,
     ),
-    Text(
-      'Index 4: Profile',
-      style: optionStyle,
-    ),
+    ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {

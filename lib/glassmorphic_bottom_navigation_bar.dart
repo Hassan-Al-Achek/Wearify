@@ -6,7 +6,7 @@ class GlassmorphicBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;
 
-  GlassmorphicBottomNavigationBar({
+  const GlassmorphicBottomNavigationBar({
     Key? key,
     required this.items,
     required this.currentIndex,

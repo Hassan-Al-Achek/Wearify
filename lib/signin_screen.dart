@@ -1,5 +1,4 @@
 import 'package:clothesapp/home_screen.dart';
-import 'package:clothesapp/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
