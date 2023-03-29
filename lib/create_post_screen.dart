@@ -46,10 +46,21 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
               icon: const Icon(Icons.arrow_back_ios_new_rounded),
               label: const Text('Previous'),
             ),
-            TextButton.icon(
-              onPressed: controlsDetails.onStepContinue,
-              label: const Text('Next'),
-              icon: const Icon(Icons.arrow_forward_ios_rounded),
+            Row(
+              children: [
+                const Text(
+                  'Next',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                TextButton.icon(
+                  onPressed: controlsDetails.onStepContinue,
+                  label: const Text(''),
+                  icon: const Icon(Icons.arrow_forward_ios_rounded),
+                ),
+              ],
             ),
           ],
         );
