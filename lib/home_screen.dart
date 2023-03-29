@@ -1,3 +1,4 @@
+import 'package:clothesapp/create_post_screen.dart';
 import 'package:clothesapp/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'glassmorphic_bottom_navigation_bar.dart';
@@ -18,10 +19,7 @@ class _NavigtionBarWidgetState extends State<NavigtionBarWidget> {
       'Index 0: Search',
       style: optionStyle,
     ),
-    Text(
-      'Index 1: Create New Post',
-      style: optionStyle,
-    ),
+    CreatePostScreen(),
     Text(
       'Index 2: Home',
       style: optionStyle,
