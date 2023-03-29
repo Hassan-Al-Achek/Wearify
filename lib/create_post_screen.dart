@@ -64,28 +64,57 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     }
   }
 
+  bool _validatePost() {
+    if (_uploadImagesStepKey.currentState!.images.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please upload at least one image.')),
+      );
+      return false;
+    }
+
+    if (_descriptionStepKey.currentState!.description.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please enter a description.')),
+      );
+      return false;
+    }
+
+    if (_selectedPostType != PostType.donate &&
+        (_selectPostTypeStepKey.currentState!.price == null ||
+            _selectPostTypeStepKey.currentState!.price!.trim().isEmpty)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please enter a price.')),
+      );
+      return false;
+    }
+
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stepper(
       currentStep: _index,
       onStepContinue: () {
         if (_index == 3) {
-          _savePostToFirebase(
-            images: _uploadImagesStepKey.currentState!.images,
-            postType: _selectPostTypeStepKey.currentState!.selectedPostType,
-            gender: _descriptionStepKey.currentState!.selectedGender,
-            clothesType: _descriptionStepKey.currentState!.selectedClothesType,
-            customClothesType:
-                _descriptionStepKey.currentState!.customClothesType,
-            size: _descriptionStepKey.currentState!.selectedSize,
-            customSize: _descriptionStepKey.currentState!.customSize,
-            quality: _descriptionStepKey.currentState!.selectedQuality,
-            description: _descriptionStepKey.currentState!.description,
-            price: _selectPostTypeStepKey.currentState!.price,
-          );
-
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()));
+          if (_validatePost()) {
+            _savePostToFirebase(
+              images: _uploadImagesStepKey.currentState!.images,
+              postType: _selectPostTypeStepKey.currentState!.selectedPostType,
+              gender: _descriptionStepKey.currentState!.selectedGender,
+              clothesType:
+                  _descriptionStepKey.currentState!.selectedClothesType,
+              customClothesType:
+                  _descriptionStepKey.currentState!.customClothesType,
+              size: _descriptionStepKey.currentState!.selectedSize,
+              customSize: _descriptionStepKey.currentState!.customSize,
+              quality: _descriptionStepKey.currentState!.selectedQuality,
+              description: _descriptionStepKey.currentState!.description,
+              price: _selectPostTypeStepKey.currentState!.price,
+            );
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const HomeScreen()));
+          }
         } else if (_index < 3) {
           setState(() {
             _index += 1;
