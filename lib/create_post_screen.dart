@@ -66,9 +66,10 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         );
       },
       steps: <Step>[
-        const Step(
-          title: Text('Upload Your Clothes Images'),
-          content: UploadImagesStep(),
+        Step(
+          title: const Text('Upload Your Clothes Images'),
+          content: const UploadImagesStep(),
+          isActive: _index >= 0,
         ),
         Step(
           title: const Text('Choose Post Type'),
@@ -86,14 +87,17 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
               }
             },
           ),
+          isActive: _index >= 1,
         ),
-        const Step(
-          title: Text('Description'),
-          content: DescriptionStep(),
+        Step(
+          title: const Text('Description'),
+          content: const DescriptionStep(),
+          isActive: _index >= 2,
         ),
-        const Step(
-          title: Text('Step-4'),
-          content: Text('To do'),
+        Step(
+          title: const Text('Step-4'),
+          content: const Text('To do'),
+          isActive: _index >= 3,
         ),
       ],
     );
