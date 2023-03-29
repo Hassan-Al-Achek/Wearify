@@ -6,11 +6,19 @@ class UploadImagesStep extends StatefulWidget {
   const UploadImagesStep({Key? key}) : super(key: key);
 
   @override
-  State<UploadImagesStep> createState() => _UploadImagesStepState();
+  State<UploadImagesStep> createState() => UploadImagesStepState();
 }
 
-class _UploadImagesStepState extends State<UploadImagesStep> {
+abstract class UploadImagesStepData {
+  List<XFile> get images;
+}
+
+class UploadImagesStepState extends State<UploadImagesStep>
+    implements UploadImagesStepData {
   List<XFile> _images = [];
+
+  @override
+  List<XFile> get images => _images;
 
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();

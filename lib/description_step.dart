@@ -10,10 +10,21 @@ class DescriptionStep extends StatefulWidget {
   const DescriptionStep({Key? key}) : super(key: key);
 
   @override
-  State<DescriptionStep> createState() => _DescriptionStepState();
+  State<DescriptionStep> createState() => DescriptionStepState();
 }
 
-class _DescriptionStepState extends State<DescriptionStep> {
+abstract class DescriptionStepData {
+  Gender get selectedGender;
+  ClothesType get selectedClothesType;
+  String? get customClothesType;
+  String? get selectedSize;
+  String? get customSize;
+  Quality get selectedQuality;
+  String get description;
+}
+
+class DescriptionStepState extends State<DescriptionStep>
+    implements DescriptionStepData {
   Gender _selectedGender = Gender.male;
   ClothesType _selectedClothesType = ClothesType.shoes;
   String? _customClothesType;
@@ -21,6 +32,28 @@ class _DescriptionStepState extends State<DescriptionStep> {
   String? _customSize;
   Quality _selectedQuality = Quality.excellent;
   TextEditingController _descriptionController = TextEditingController();
+
+  @override
+  Gender get selectedGender => _selectedGender;
+
+  @override
+  ClothesType get selectedClothesType => _selectedClothesType;
+
+  @override
+  String? get customClothesType => _customClothesType;
+
+  @override
+  String? get selectedSize => _selectedSize;
+
+  @override
+  String? get customSize => _customSize;
+
+  @override
+  Quality get selectedQuality => _selectedQuality;
+
+  @override
+  @override
+  String get description => _descriptionController.text;
 
   List<String> getSizes(ClothesType clothesType) {
     List<String> sizes;

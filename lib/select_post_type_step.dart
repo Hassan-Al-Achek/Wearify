@@ -10,12 +10,24 @@ class SelectPostTypeStep extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<SelectPostTypeStep> createState() => _SelectPostTypeStepState();
+  State<SelectPostTypeStep> createState() => SelectPostTypeStepState();
 }
 
-class _SelectPostTypeStepState extends State<SelectPostTypeStep> {
+abstract class SelectPostTypeStepData {
+  PostType get selectedPostType;
+  String? get price;
+}
+
+class SelectPostTypeStepState extends State<SelectPostTypeStep>
+    implements SelectPostTypeStepData {
   PostType _selectedPostType = PostType.sell;
   final TextEditingController _priceController = TextEditingController();
+
+  @override
+  PostType get selectedPostType => _selectedPostType;
+
+  @override
+  String? get price => _priceController.text;
 
   @override
   void dispose() {
