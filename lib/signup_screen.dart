@@ -104,6 +104,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         'date_of_birth': _selectedDateOfBirth,
         'gender': _selectedGender,
         'user_avatar': userAvatar.hashCode,
+        'xp': 0,
         // Add the address info (e.g. 'address': _selectedAddress)
       });
 
