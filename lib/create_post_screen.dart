@@ -1,3 +1,4 @@
+import 'package:clothesapp/description_step.dart';
 import 'package:clothesapp/select_post_type_step.dart';
 import 'package:clothesapp/upload_image_step.dart';
 import 'package:flutter/material.dart';
@@ -47,8 +48,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             ),
             TextButton.icon(
               onPressed: controlsDetails.onStepContinue,
-              icon: const Icon(Icons.arrow_forward_ios_rounded),
               label: const Text('Next'),
+              icon: const Icon(Icons.arrow_forward_ios_rounded),
             ),
           ],
         );
@@ -76,8 +77,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
           ),
         ),
         const Step(
-          title: Text('Step-3'),
-          content: Text('To do'),
+          title: Text('Description'),
+          content: DescriptionStep(),
         ),
         const Step(
           title: Text('Step-4'),
