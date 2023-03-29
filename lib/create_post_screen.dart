@@ -11,22 +11,23 @@ class CreatePostScreen extends StatefulWidget {
 
 class _CreatePostScreenState extends State<CreatePostScreen> {
   int _index = 0;
+  PostType _selectedPostType = PostType.sell;
 
   @override
   Widget build(BuildContext context) {
     return Stepper(
       currentStep: _index,
+      onStepContinue: () {
+        if (_index < 3) {
+          setState(() {
+            _index += 1;
+          });
+        }
+      },
       onStepCancel: () {
         if (_index > 0) {
           setState(() {
             _index -= 1;
-          });
-        }
-      },
-      onStepContinue: () {
-        if (_index <= 0) {
-          setState(() {
-            _index += 1;
           });
         }
       },
@@ -35,14 +36,52 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
           _index = index;
         });
       },
-      steps: const <Step>[
-        Step(
+      controlsBuilder: (BuildContext context, ControlsDetails controlsDetails) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            TextButton.icon(
+              onPressed: controlsDetails.onStepCancel,
+              icon: const Icon(Icons.arrow_back_ios_new_rounded),
+              label: const Text('Previous'),
+            ),
+            TextButton.icon(
+              onPressed: controlsDetails.onStepContinue,
+              icon: const Icon(Icons.arrow_forward_ios_rounded),
+              label: const Text('Next'),
+            ),
+          ],
+        );
+      },
+      steps: <Step>[
+        const Step(
           title: Text('Upload Your Clothes Images'),
           content: UploadImagesStep(),
         ),
         Step(
-          title: Text('Choose Post Type'),
-          content: SelectPostTypeStep(),
+          title: const Text('Choose Post Type'),
+          content: SelectPostTypeStep(
+            onPostTypeChanged: (PostType newType) {
+              setState(() {
+                _selectedPostType = newType;
+              });
+            },
+            onIndexChanged: () {
+              if (_index < 3) {
+                setState(() {
+                  _index += 1;
+                });
+              }
+            },
+          ),
+        ),
+        const Step(
+          title: Text('Step-3'),
+          content: Text('To do'),
+        ),
+        const Step(
+          title: Text('Step-4'),
+          content: Text('To do'),
         ),
       ],
     );
