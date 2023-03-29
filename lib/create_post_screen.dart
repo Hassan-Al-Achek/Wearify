@@ -1,4 +1,5 @@
 import 'package:clothesapp/description_step.dart';
+import 'package:clothesapp/home_screen.dart';
 import 'package:clothesapp/select_post_type_step.dart';
 import 'package:clothesapp/upload_image_step.dart';
 import 'package:flutter/material.dart';
@@ -82,6 +83,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             description: _descriptionStepKey.currentState!.description,
             price: _selectPostTypeStepKey.currentState!.price,
           );
+
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const HomeScreen()));
         } else if (_index < 3) {
           setState(() {
             _index += 1;
@@ -164,7 +168,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         ),
         Step(
           title: const Text('Post'),
-          content: const Text('To do'),
+          content: const Text('Ready To Go!'),
           isActive: _index >= 3,
         ),
       ],
