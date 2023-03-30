@@ -1,5 +1,6 @@
 import 'package:clothesapp/create_post_screen.dart';
 import 'package:clothesapp/profile_screen.dart';
+import 'package:clothesapp/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'glassmorphic_bottom_navigation_bar.dart';
 
@@ -15,10 +16,7 @@ class _NavigtionBarWidgetState extends State<NavigtionBarWidget> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Search',
-      style: optionStyle,
-    ),
+    SearchScreen(),
     CreatePostScreen(),
     Text(
       'Index 2: Home',
