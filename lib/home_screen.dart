@@ -1,4 +1,5 @@
 import 'package:clothesapp/create_post_screen.dart';
+import 'package:clothesapp/leaderboard_screen.dart';
 import 'package:clothesapp/profile_screen.dart';
 import 'package:clothesapp/search_screen.dart';
 import 'package:flutter/material.dart';
@@ -22,10 +23,7 @@ class _NavigtionBarWidgetState extends State<NavigtionBarWidget> {
       'Index 2: Home',
       style: optionStyle,
     ),
-    Text(
-      'Index 3: Top Donators',
-      style: optionStyle,
-    ),
+    LeaderboardScreen(),
     ProfileScreen(),
   ];
 

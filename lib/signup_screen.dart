@@ -86,11 +86,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
           .createUserWithEmailAndPassword(
               email: _emailController.text, password: _passwordController.text);
 
-      // * Generate simple avatar for each new user
-      String userAvatar = randomAvatarString(
-        DateTime.now().toIso8601String(),
-      );
-
       // Save the user's additional information in Firestore
       await FirebaseFirestore.instance
           .collection('clients')
@@ -103,9 +98,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
         'phone_number': _formattedPhoneNumber,
         'date_of_birth': _selectedDateOfBirth,
         'gender': _selectedGender,
-        'user_avatar': userAvatar.hashCode,
-        'xp': 0,
         // Add the address info (e.g. 'address': _selectedAddress)
+      });
+
+      CollectionReference leaderboardRef =
+          FirebaseFirestore.instance.collection('leaderboard');
+      await leaderboardRef.doc(userCredential.user?.uid).set({
+        'first_name': _firstNameController.text,
+        'last_name': _lastNameController.text.toUpperCase(),
+        'username': _usernameController.text,
+        'gender': _selectedGender,
+        'avatar_url': '',
+        'xp': 0,
       });
 
       // Navigate to the next screen (e.g. home screen) after successful sign-up

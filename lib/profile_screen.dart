@@ -54,6 +54,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         CollectionReference clientsCollection =
             FirebaseFirestore.instance.collection('clients');
         clientsCollection.doc(currentUser.uid).update({'avatar_url': imageUrl});
+
+        CollectionReference leaderBoardCollection =
+            FirebaseFirestore.instance.collection('leaderboard');
+        leaderBoardCollection
+            .doc(currentUser.uid)
+            .update({'avatar_url': imageUrl});
       } on FirebaseException catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(e.message ?? 'Upload failed')),

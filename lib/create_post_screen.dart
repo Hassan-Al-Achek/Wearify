@@ -58,7 +58,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
 
     if (postType == PostType.donate) {
       await FirebaseFirestore.instance
-          .collection('clients')
+          .collection('leaderboard')
           .doc(user.uid)
           .update({'xp': FieldValue.increment(30)});
     }
