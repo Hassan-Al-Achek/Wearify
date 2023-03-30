@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:clothesapp/auth_gate.dart';
 import 'firebase_options.dart';
 import 'package:clothesapp/app_theme.dart';
+import 'package:clothesapp/splash_screen.dart';
 
 Future<void> main(List<String> args) async {
   // Initialize Firebase
@@ -25,7 +26,10 @@ Future<void> main(List<String> args) async {
         colorScheme:
             ColorScheme.fromSwatch().copyWith(secondary: secondaryColor),
       ),
-      home: const AuthGate(),
+      home: SplashScreen(),
+      routes: {
+        '/auth_gate': (context) => const AuthGate(),
+      },
     ),
   );
 }
