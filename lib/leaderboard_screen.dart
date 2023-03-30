@@ -11,7 +11,7 @@ class LeaderboardScreen extends StatefulWidget {
 class _LeaderboardScreenState extends State<LeaderboardScreen> {
   // Fetch top 100 users based on XP
   Future<QuerySnapshot> _fetchTopUsers() {
-    final usersRef = FirebaseFirestore.instance.collection('clients');
+    final usersRef = FirebaseFirestore.instance.collection('leaderboard');
     return usersRef.orderBy('xp', descending: true).limit(100).get();
   }
 

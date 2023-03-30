@@ -79,14 +79,6 @@ class SelectPostTypeStepState extends State<SelectPostTypeStep>
               hintText: 'Enter the price',
             ),
           )
-        else
-          const TextField(
-            maxLines: 4,
-            decoration: InputDecoration(
-              labelText: 'Description',
-              hintText: 'Enter a description for your post',
-            ),
-          ),
       ],
     );
   }
