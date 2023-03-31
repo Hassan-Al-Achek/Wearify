@@ -311,21 +311,16 @@ class _ExploreScreenState extends State<ExploreScreen> {
           );
         },
       ),
-      floatingActionButton: AnimatedOpacity(
-        opacity: !_isScrolling ? 1.0 : 0.0,
-        duration: const Duration(milliseconds: 200),
-        child: FloatingActionButton(
-          onPressed: !_isScrolling
-              ? () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ChatsScreen()),
-                  );
-                }
-              : null,
-          child: const Icon(Icons.chat),
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ChatsScreen(),
+            ),
+          );
+        },
+        child: const Icon(Icons.chat),
       ),
     );
   }

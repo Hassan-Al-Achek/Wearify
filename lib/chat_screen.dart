@@ -16,7 +16,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   late String _currentUserId;
   final TextEditingController _messageController = TextEditingController();
-  GlobalKey<AnimatedListState> _animatedListKey =
+  final GlobalKey<AnimatedListState> _animatedListKey =
       GlobalKey<AnimatedListState>();
 
   @override
