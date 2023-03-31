@@ -26,7 +26,7 @@ Future<void> main(List<String> args) async {
         colorScheme:
             ColorScheme.fromSwatch().copyWith(secondary: secondaryColor),
       ),
-      home: SplashScreen(),
+      home: const SplashScreen(),
       routes: {
         '/auth_gate': (context) => const AuthGate(),
       },
