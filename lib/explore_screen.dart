@@ -116,7 +116,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       sizeStr = size;
     }
 
-    Widget _singleSkeletonLoader() {
+    Widget singleSkeletonLoader() {
       return Shimmer.fromColors(
         baseColor: Colors.grey[300]!,
         highlightColor: Colors.grey[100]!,
@@ -147,7 +147,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return _singleSkeletonLoader();
+          return singleSkeletonLoader();
         }
 
         if (snapshot.hasError) {
