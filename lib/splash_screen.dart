@@ -64,9 +64,23 @@ class _SplashScreenState extends State<SplashScreen>
                   child: child,
                 );
               },
-              child: const Text(
-                'Welcome to Wearify',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              child: Column(
+                children: [
+                  Image.asset(
+                    'assets/images/Wearify.png',
+                    width: 100,
+                    height: 100,
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    'Wearify',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
