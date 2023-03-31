@@ -23,18 +23,28 @@ class ChatsScreen extends StatelessWidget {
   Stream<List<String>> fetchChatUsers() async* {
     String currentUserId = FirebaseAuth.instance.currentUser!.uid;
 
-    final chatsSnapshot = FirebaseFirestore.instance
+    final sentMessagesSnapshot = FirebaseFirestore.instance
         .collection('messages')
         .where('senderId', isEqualTo: currentUserId)
         .snapshots();
+    final receivedMessagesSnapshot = FirebaseFirestore.instance
+        .collection('messages')
+        .where('receiverId', isEqualTo: currentUserId)
+        .snapshots();
 
-    await for (var snapshot in chatsSnapshot) {
-      Set<String> userIds = {};
-      for (var message in snapshot.docs) {
-        String otherUserId = message['receiverId'];
-        userIds.add(otherUserId);
+    await for (var sentSnapshot in sentMessagesSnapshot) {
+      await for (var receivedSnapshot in receivedMessagesSnapshot) {
+        Set<String> userIds = {};
+        for (var message in sentSnapshot.docs) {
+          String otherUserId = message['receiverId'];
+          userIds.add(otherUserId);
+        }
+        for (var message in receivedSnapshot.docs) {
+          String otherUserId = message['senderId'];
+          userIds.add(otherUserId);
+        }
+        yield userIds.toList();
       }
-      yield userIds.toList();
     }
   }
 
@@ -52,7 +62,7 @@ class ChatsScreen extends StatelessWidget {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
+            return const CircularProgressIndicator(); // * To-Do: Replace it with skeleton effect
           }
 
           List<String> chatUserIds = snapshot.data!;
