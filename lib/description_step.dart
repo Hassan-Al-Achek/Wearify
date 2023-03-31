@@ -56,10 +56,12 @@ class DescriptionStepState extends State<DescriptionStep>
   String get description => _descriptionController.text;
 
   List<String> getSizes(ClothesType clothesType) {
-    List<String> sizes;
+    List<String> sizes = [];
 
     if (clothesType == ClothesType.shoes) {
-      sizes = ['5', '6', '7', '8', '9', '10', '11', '12'];
+      for (int i = 10; i <= 45; i++) {
+        sizes.add(i.toString());
+      }
     } else {
       sizes = ['S', 'M', 'L', 'XL', 'XXL'];
     }

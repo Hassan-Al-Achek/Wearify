@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:path/path.dart' as Path;
 
 class CreatePostScreen extends StatefulWidget {
   const CreatePostScreen({super.key});
@@ -40,11 +43,13 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
 
+    final imageURLs = await _uploadImagesToFirebaseStorage(images);
+
     final postId = FirebaseFirestore.instance.collection('clothes').doc().id;
 
     await FirebaseFirestore.instance.collection('clothes').doc(postId).set({
       'userId': user.uid,
-      'images': images.map((image) => image.path).toList(),
+      'images': imageURLs,
       'postType': postType.index,
       'gender': gender.index,
       'clothesType': clothesType.index,
@@ -89,6 +94,24 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     }
 
     return true;
+  }
+
+  Future<List<String>> _uploadImagesToFirebaseStorage(
+      List<XFile> images) async {
+    List<String> imageURLs = [];
+
+    for (var image in images) {
+      String fileName = Path.basename(image.path);
+      final storageReference =
+          FirebaseStorage.instance.ref().child('clothes/$fileName');
+      final uploadTask = storageReference.putFile(File(image.path));
+      await uploadTask.whenComplete(() async {
+        final downloadURL = await storageReference.getDownloadURL();
+        imageURLs.add(downloadURL);
+      });
+    }
+
+    return imageURLs;
   }
 
   @override

@@ -1,4 +1,5 @@
 import 'package:clothesapp/create_post_screen.dart';
+import 'package:clothesapp/explore_screen.dart';
 import 'package:clothesapp/leaderboard_screen.dart';
 import 'package:clothesapp/profile_screen.dart';
 import 'package:clothesapp/search_screen.dart';
@@ -19,10 +20,7 @@ class _NavigtionBarWidgetState extends State<NavigtionBarWidget> {
   static const List<Widget> _widgetOptions = <Widget>[
     SearchScreen(),
     CreatePostScreen(),
-    Text(
-      'Index 2: Home',
-      style: optionStyle,
-    ),
+    ExploreScreen(),
     LeaderboardScreen(),
     ProfileScreen(),
   ];

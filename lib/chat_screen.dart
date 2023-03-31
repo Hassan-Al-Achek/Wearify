@@ -1,11 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({
     super.key,
-    required currentUserId,
-    required chatUserId,
+    required receiverId,
+    // required currentUserId,
+    // required chatUserId,
   });
 
   @override
@@ -15,6 +17,8 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Scaffold(
+      body: Text("Chat With Me"),
+    );
   }
 }
