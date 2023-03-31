@@ -19,6 +19,76 @@ class _ExploreScreenState extends State<ExploreScreen> {
   Widget _buildPost(Map<String, dynamic> data) {
     String? description = data['description'] ?? '';
     List<dynamic>? images = data['images'] ?? [];
+    int quality = data['quality'] ?? 0;
+    String postType = '';
+    IconData priceIcon = Icons.attach_money;
+    String price = '';
+    int clothesType = data['clothesType'] ?? 0;
+    String customClothesType = data['customClothesType'] ?? '';
+    String size = data['size'] ?? 'Others';
+    String customSize = data['customSize'] ?? '';
+
+    switch (data['postType']) {
+      case 0:
+        postType = 'For sale';
+        price = data['price'] ?? '';
+        break;
+      case 1:
+        postType = 'For rent';
+        price = data['price'] ?? '';
+        price += '/day';
+        break;
+      case 2:
+        postType = 'Donation';
+        price = 'Thank';
+        break;
+      default:
+        postType = 'Unknown';
+    }
+
+    String qualityIndicator = '';
+
+    switch (quality) {
+      case 0:
+        qualityIndicator = 'Excellent';
+        break;
+      case 1:
+        qualityIndicator = 'Good';
+        break;
+      case 2:
+        qualityIndicator = 'Fair';
+        break;
+      default:
+        qualityIndicator = 'Unknown';
+    }
+
+    String clothesTypeStr = '';
+
+    if (clothesType == 3) {
+      clothesTypeStr = customClothesType;
+    } else {
+      switch (clothesType) {
+        case 0:
+          clothesTypeStr = 'Shoes';
+          break;
+        case 1:
+          clothesTypeStr = 'T-shirt';
+          break;
+        case 2:
+          clothesTypeStr = 'Pants';
+          break;
+        default:
+          clothesTypeStr = 'Unknown';
+      }
+    }
+
+    String sizeStr = '';
+
+    if (size == 'Others') {
+      sizeStr = customSize;
+    } else {
+      sizeStr = size;
+    }
 
     return FutureBuilder<DocumentSnapshot>(
       future: FirebaseFirestore.instance
@@ -81,8 +151,49 @@ class _ExploreScreenState extends State<ExploreScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  description!,
+                  'Description: $description!',
                   style: const TextStyle(fontSize: 16),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Quality: $qualityIndicator',
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    Text(
+                      postType,
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    Row(
+                      children: [
+                        Icon(priceIcon),
+                        Text(
+                          price,
+                          style: const TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Size: $sizeStr',
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    Text(
+                      'Type: $clothesTypeStr',
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  ],
                 ),
               ),
             ],

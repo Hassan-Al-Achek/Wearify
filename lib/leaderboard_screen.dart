@@ -50,7 +50,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
               const SizedBox(height: 16),
               Center(
                 child: Text(
-                  'Our Top Donators',
+                  'Our Top Donors',
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
