@@ -1,4 +1,4 @@
-import 'package:clothesapp/home_screen.dart';
+import 'package:wearify/home_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';

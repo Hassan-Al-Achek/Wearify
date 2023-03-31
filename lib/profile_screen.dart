@@ -1,9 +1,9 @@
-import 'package:clothesapp/auth_gate.dart';
+import 'package:wearify/auth_gate.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:glassmorphism/glassmorphism.dart';
-import 'package:clothesapp/app_theme.dart';
+import 'package:wearify/app_theme.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'dart:io';

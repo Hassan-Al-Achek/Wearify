@@ -1,8 +1,8 @@
-import 'package:clothesapp/create_post_screen.dart';
-import 'package:clothesapp/explore_screen.dart';
-import 'package:clothesapp/leaderboard_screen.dart';
-import 'package:clothesapp/profile_screen.dart';
-import 'package:clothesapp/search_screen.dart';
+import 'package:wearify/create_post_screen.dart';
+import 'package:wearify/explore_screen.dart';
+import 'package:wearify/leaderboard_screen.dart';
+import 'package:wearify/profile_screen.dart';
+import 'package:wearify/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'glassmorphic_bottom_navigation_bar.dart';
 

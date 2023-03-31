@@ -1,7 +1,7 @@
-import 'package:clothesapp/description_step.dart';
-import 'package:clothesapp/home_screen.dart';
-import 'package:clothesapp/select_post_type_step.dart';
-import 'package:clothesapp/upload_image_step.dart';
+import 'package:wearify/description_step.dart';
+import 'package:wearify/home_screen.dart';
+import 'package:wearify/select_post_type_step.dart';
+import 'package:wearify/upload_image_step.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

@@ -1,10 +1,10 @@
-import 'package:clothesapp/home_screen.dart';
+import 'package:wearify/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:clothesapp/signup_screen.dart';
+import 'package:wearify/signup_screen.dart';
 import 'package:glassmorphism/glassmorphism.dart';
-import 'package:clothesapp/app_theme.dart';
+import 'package:wearify/app_theme.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
