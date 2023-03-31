@@ -15,8 +15,6 @@ class NavigtionBarWidget extends StatefulWidget {
 
 class _NavigtionBarWidgetState extends State<NavigtionBarWidget> {
   int _selectedIndex = 2;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     SearchScreen(),
     CreatePostScreen(),
