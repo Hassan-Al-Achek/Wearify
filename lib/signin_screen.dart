@@ -88,6 +88,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: TextFormField(
+                        autofocus: true,
                         validator: MultiValidator([
                           RequiredValidator(errorText: '* Required'),
                           EmailValidator(
@@ -97,7 +98,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Email',
-                          hintText: '',
+                          hintText: 'bob@gmail.com',
                         ),
                         keyboardType: TextInputType.emailAddress,
                       ),
@@ -140,58 +141,59 @@ class _SignInScreenState extends State<SignInScreen> {
                     // Sigin Button
                     Column(
                       children: [
-                        ElevatedButton(
-                          onPressed:
-                              _signIn, // i will implement the sigin function
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(primaryColor),
-                            padding: MaterialStateProperty.all(
-                                const EdgeInsets.symmetric(
-                                    vertical: 12.0, horizontal: 32.0)),
-                            shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            )),
-                          ),
-                          // STYLING, will return to it back
-                          // style: ButtonStyle(
-                          //   backgroundColor:
-                          //       MaterialStateColor.resolveWith((states) => Colors.red),
-                          // ),
-
-                          child: const Text(
-                            'Sign In',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
+                        Semantics(
+                          label: "Sign in button",
+                          button: true,
+                          child: ElevatedButton(
+                            onPressed: _signIn,
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(primaryColor),
+                              padding: MaterialStateProperty.all(
+                                  const EdgeInsets.symmetric(
+                                      vertical: 12.0, horizontal: 32.0)),
+                              shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              )),
+                            ),
+                            child: const Text(
+                              'Sign In',
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
 
                         // Register Button
-                        TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const SignUpScreen()),
-                            );
-                          },
-                          child: RichText(
-                            text: const TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: "Don't have an account? ",
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                TextSpan(
-                                  text: 'Register',
-                                  style: TextStyle(
-                                      color: Colors.blue,
-                                      decoration: TextDecoration.underline),
-                                ),
-                              ],
+                        Semantics(
+                          label: "Register button",
+                          button: true,
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const SignUpScreen()),
+                              );
+                            },
+                            child: RichText(
+                              text: const TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: "Don't have an account? ",
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  TextSpan(
+                                    text: 'Register',
+                                    style: TextStyle(
+                                        color: Colors.blue,
+                                        decoration: TextDecoration.underline),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

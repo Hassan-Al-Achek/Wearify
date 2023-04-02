@@ -9,8 +9,8 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:random_avatar/random_avatar.dart';
 
-class usernameValidator extends TextFieldValidator {
-  usernameValidator(super.errorText);
+class UserNameValidator extends TextFieldValidator {
+  UserNameValidator(super.errorText);
 
   @override
   bool isValid(String? value) {
@@ -151,44 +151,51 @@ class _SignUpScreenState extends State<SignUpScreen> {
           key: _formKey,
           child: Column(
             children: [
-              // First Name Field
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: TextFormField(
-                  controller: _firstNameController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'First Name',
-                  ),
-                  validator: MultiValidator([
-                    RequiredValidator(errorText: "first Name is required"),
-                    MaxLengthValidator(
-                      30,
-                      errorText:
-                          'First Name could not be longer than 30 character',
+              Semantics(
+                label: 'First Name',
+                child:
+                    // First Name Field
+                    Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    controller: _firstNameController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'First Name',
                     ),
-                  ]),
+                    validator: MultiValidator([
+                      RequiredValidator(errorText: "first Name is required"),
+                      MaxLengthValidator(
+                        30,
+                        errorText:
+                            'First Name could not be longer than 30 character',
+                      ),
+                    ]),
+                  ),
                 ),
               ),
 
               // Last Name Field
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: TextFormField(
-                  controller: _lastNameController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Last Name',
-                  ),
-                  validator: MultiValidator(
-                    [
-                      RequiredValidator(errorText: "Last Name is required"),
-                      MaxLengthValidator(
-                        30,
-                        errorText:
-                            'Last Name could not be longer than 30 character',
-                      ),
-                    ],
+              Semantics(
+                label: 'Last Name',
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    controller: _lastNameController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Last Name',
+                    ),
+                    validator: MultiValidator(
+                      [
+                        RequiredValidator(errorText: "Last Name is required"),
+                        MaxLengthValidator(
+                          30,
+                          errorText:
+                              'Last Name could not be longer than 30 character',
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -214,7 +221,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         errorText:
                             "Username could not be longer than 30 characters",
                       ),
-                      usernameValidator(
+                      UserNameValidator(
                         'Username should be alphanumeric and can contains only . or _ as special character',
                       ),
                     ],
@@ -351,96 +358,106 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
 
               // Gender Field
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: DropdownButtonFormField<String>(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Gender',
+              Semantics(
+                label: 'Gender',
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: DropdownButtonFormField<String>(
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Gender',
+                    ),
+                    value: _selectedGender,
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        _selectedGender = newValue!;
+                      });
+                    },
+                    items: <String>[
+                      'Male',
+                      'Female',
+                      'Other',
+                    ].map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please select your gender';
+                      }
+                      return null;
+                    },
                   ),
-                  value: _selectedGender,
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      _selectedGender = newValue!;
-                    });
-                  },
-                  items: <String>[
-                    'Male',
-                    'Female',
-                    'Other',
-                  ].map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please select your gender';
-                    }
-                    return null;
-                  },
                 ),
               ),
 
               // Address Location Field (Google Maps picker)
               // You will need to implement the Google Maps picker widget and integrate it into this TextFormField
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Address',
-                  ),
-                  readOnly: true,
-                  onTap: () async {
-                    // Show the Google Maps picker and get the selected address
+              Semantics(
+                label: 'Address Location',
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Address',
+                    ),
+                    readOnly: true,
+                    onTap: () async {
+                      // Show the Google Maps picker and get the selected address
 
-                    final LatLng? location = await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MapPicker(
-                          initialLocation: _selectedLocation,
-                        ),
-                      ),
-                    );
-                    if (location != null) {
-                      setState(() {
-                        _selectedLocation = location;
-                        _markers.clear();
-                        _markers.add(
-                          Marker(
-                            markerId: const MarkerId('selected-location'),
-                            position: _selectedLocation!,
+                      final LatLng? location = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MapPicker(
+                            initialLocation: _selectedLocation,
                           ),
-                        );
-                      });
-                    }
-                  },
-                  // validator: (value) {
-                  //   if (value == null || value.isEmpty) {
-                  //     return 'Please select your address';
-                  //   }
-                  //   return null;
-                  // },
-                  controller: TextEditingController(
-                    text: _selectedLocation == null
-                        ? ''
-                        : '${_selectedLocation!.latitude}, ${_selectedLocation!.longitude}',
+                        ),
+                      );
+                      if (location != null) {
+                        setState(() {
+                          _selectedLocation = location;
+                          _markers.clear();
+                          _markers.add(
+                            Marker(
+                              markerId: const MarkerId('selected-location'),
+                              position: _selectedLocation!,
+                            ),
+                          );
+                        });
+                      }
+                    },
+                    // validator: (value) {
+                    //   if (value == null || value.isEmpty) {
+                    //     return 'Please select your address';
+                    //   }
+                    //   return null;
+                    // },
+                    controller: TextEditingController(
+                      text: _selectedLocation == null
+                          ? ''
+                          : '${_selectedLocation!.latitude}, ${_selectedLocation!.longitude}',
+                    ),
                   ),
                 ),
               ),
 
               // Sign Up Button
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _signUp();
-                    }
-                  },
-                  child: const Text('Sign Up'),
+
+              Semantics(
+                label: 'Sign Up Button',
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _signUp();
+                      }
+                    },
+                    child: const Text('Sign Up'),
+                  ),
                 ),
               ),
             ],

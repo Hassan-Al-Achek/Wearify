@@ -14,6 +14,8 @@ Future<void> main(List<String> args) async {
 
   runApp(
     MaterialApp(
+      // ! Don't forget to remove showSemanticsDebugger or change it to false
+      showSemanticsDebugger: false,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: backgroundColor,
