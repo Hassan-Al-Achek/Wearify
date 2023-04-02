@@ -1,16 +1,34 @@
-# clothesapp
+# Wearify
 
-A new Flutter project.
+## Simplified version of the application flow
+![alt text](Wearify.drawio.png)
 
-## Getting Started
+## Run
+To run your Flutter code from this GitHub repo, you needs to follow these steps:
 
-This project is a starting point for a Flutter application.
+### 1 -Install the required software:
+a. Install Git, if not already installed: https://git-scm.com/downloads </br>
+b. Install Flutter SDK: https://flutter.dev/docs/get-started/install </br>
+c. Install an IDE with Flutter support, such as Android Studio or Visual Studio Code, and the required plugins. </br>
 
-A few resources to get you started if this is your first Flutter project:
+### 2- Clone the repository using Git:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+``` bash
+git clone https://github.com/Hassan-Al-Achek/Wearify.git
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 3- Open the project in the IDE (Android Studio or Visual Studio Code).
+
+If using an IDE with Flutter support, the required packages should be automatically fetched. If not, or if there are any issues, you can manually fetch the packages by running the following command in the terminal:
+
+```bash
+flutter pub get
+```
+
+### 4- Connect a physical device or start an emulator/simulator.
+
+### 5- Run the app using the IDE's run button, or by running the following command in the terminal:
+
+```bash
+flutter run
+```
