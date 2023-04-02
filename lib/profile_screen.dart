@@ -133,77 +133,97 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     shrinkWrap: true,
                     padding: const EdgeInsets.all(16.0),
                     children: [
-                      GestureDetector(
-                        onTap: _pickImage,
-                        child: CircleAvatar(
-                          radius: 50,
-                          backgroundColor: Colors.grey,
-                          backgroundImage: _getAvatarImage(userData),
-                          child: _getAvatarImage(userData) == null
-                              ? const Icon(Icons.person, size: 50)
-                              : null,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: RichText(
-                          text: TextSpan(
-                            style:
-                                const TextStyle(color: textColor, fontSize: 18),
-                            children: [
-                              TextSpan(
-                                text: 'Full Name: ${userData['first_name']}',
-                              ),
-                              TextSpan(
-                                text: ' ${userData['last_name']}',
-                              ),
-                            ],
+                      Semantics(
+                        label: 'User avatar',
+                        child: GestureDetector(
+                          onTap: _pickImage,
+                          child: CircleAvatar(
+                            radius: 50,
+                            backgroundColor: Colors.grey,
+                            backgroundImage: _getAvatarImage(userData),
+                            child: _getAvatarImage(userData) == null
+                                ? const Icon(Icons.person, size: 50)
+                                : null,
                           ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Username: @${userData['username']}',
-                          style:
-                              const TextStyle(color: textColor, fontSize: 18),
+                        child: Semantics(
+                          label: 'Full Name',
+                          child: RichText(
+                            text: TextSpan(
+                              style: const TextStyle(
+                                  color: textColor, fontSize: 18),
+                              children: [
+                                TextSpan(
+                                  text: 'Full Name: ${userData['first_name']}',
+                                ),
+                                TextSpan(
+                                  text: ' ${userData['last_name']}',
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Email: ${userData['email']}',
-                          style:
-                              const TextStyle(color: textColor, fontSize: 18),
+                        child: Semantics(
+                          label: 'Username',
+                          child: Text(
+                            'Username: @${userData['username']}',
+                            style:
+                                const TextStyle(color: textColor, fontSize: 18),
+                          ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Phone Number: ${userData['phone_number']}',
-                          style:
-                              const TextStyle(color: textColor, fontSize: 18),
+                        child: Semantics(
+                          label: 'Email',
+                          child: Text(
+                            'Email: ${userData['email']}',
+                            style:
+                                const TextStyle(color: textColor, fontSize: 18),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Semantics(
+                          label: 'Phone Number',
+                          child: Text(
+                            'Phone Number: ${userData['phone_number']}',
+                            style:
+                                const TextStyle(color: textColor, fontSize: 18),
+                          ),
                         ),
                       ),
                       const SizedBox(height: 20),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: ElevatedButton(
-                          onPressed: _signOut,
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(primaryColor),
-                            padding: MaterialStateProperty.all(
-                                const EdgeInsets.symmetric(
-                                    vertical: 12.0, horizontal: 32.0)),
-                            shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            )),
-                          ),
-                          child: const Text('Log Out',
+                        child: Semantics(
+                          label: 'Log out button',
+                          child: ElevatedButton(
+                            onPressed: _signOut,
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(primaryColor),
+                              padding: MaterialStateProperty.all(
+                                  const EdgeInsets.symmetric(
+                                      vertical: 12.0, horizontal: 32.0)),
+                              shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              )),
+                            ),
+                            child: const Text(
+                              'Log Out',
                               style:
-                                  TextStyle(color: Colors.white, fontSize: 16)),
+                                  TextStyle(color: Colors.white, fontSize: 18),
+                            ),
+                          ),
                         ),
                       ),
                     ],

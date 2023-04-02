@@ -49,12 +49,16 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
             children: [
               const SizedBox(height: 16),
               Center(
-                child: Text(
-                  'Our Top Donors',
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                      ),
+                child: Semantics(
+                  label: 'Our Top Donors',
+                  header: true,
+                  child: Text(
+                    'Our Top Donors',
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
                 ),
               ),
               const SizedBox(height: 16),
@@ -75,7 +79,10 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                   if (index < 3) {
                     return _buildTopThreeUser(index, username, avatarUrl, xp);
                   } else {
-                    return _buildUserRow(username, avatarUrl, xp);
+                    return Semantics(
+                      label: 'User $username with $xp XP',
+                      child: _buildUserRow(username, avatarUrl, xp),
+                    );
                   }
                 },
               ),

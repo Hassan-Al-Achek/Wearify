@@ -51,18 +51,27 @@ class SelectPostTypeStepState extends State<SelectPostTypeStep>
               widget.onIndexChanged();
             }
           },
-          items: const <DropdownMenuItem<PostType>>[
+          items: <DropdownMenuItem<PostType>>[
             DropdownMenuItem<PostType>(
               value: PostType.sell,
-              child: Text('Sell'),
+              child: Semantics(
+                label: 'Sell',
+                child: const Text('Sell'),
+              ),
             ),
             DropdownMenuItem<PostType>(
               value: PostType.rent,
-              child: Text('Rent'),
+              child: Semantics(
+                label: 'Rent',
+                child: const Text('Rent'),
+              ),
             ),
             DropdownMenuItem<PostType>(
               value: PostType.donate,
-              child: Text('Donate'),
+              child: Semantics(
+                label: 'Donate',
+                child: const Text('Donate'),
+              ),
             ),
           ],
         ),

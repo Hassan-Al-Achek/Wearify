@@ -36,29 +36,44 @@ class _NavigtionBarWidgetState extends State<NavigtionBarWidget> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: GlassmorphicBottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: Semantics(
+              label: 'Search',
+              child: const Icon(Icons.search),
+            ),
             label: 'Search',
             backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_circle_outline),
+            icon: Semantics(
+              label: 'Post',
+              child: const Icon(Icons.add_circle_outline),
+            ),
             label: 'Post',
             backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_filled),
+            icon: Semantics(
+              label: 'Home',
+              child: const Icon(Icons.home_filled),
+            ),
             label: 'Home',
             backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.leaderboard),
+            icon: Semantics(
+              label: 'Leader Board',
+              child: const Icon(Icons.leaderboard),
+            ),
             label: 'Leader Board',
             backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
+            icon: Semantics(
+              label: 'Profile',
+              child: const Icon(Icons.account_circle),
+            ),
             label: 'Profile',
             backgroundColor: Colors.blue,
           ),

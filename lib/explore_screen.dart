@@ -174,8 +174,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       ),
                     );
                   },
-                  child: CircleAvatar(
-                    backgroundImage: _getAvatarImage(userData),
+                  child: Semantics(
+                    label: '$username\'s avatar',
+                    child: CircleAvatar(
+                      backgroundImage: _getAvatarImage(userData),
+                    ),
                   ),
                 ),
                 title: Text(username),
@@ -311,16 +314,19 @@ class _ExploreScreenState extends State<ExploreScreen> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const ChatsScreen(),
-            ),
-          );
-        },
-        child: const Icon(Icons.chat),
+      floatingActionButton: Semantics(
+        label: 'Open chats screen',
+        child: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ChatsScreen(),
+              ),
+            );
+          },
+          child: const Icon(Icons.chat),
+        ),
       ),
     );
   }

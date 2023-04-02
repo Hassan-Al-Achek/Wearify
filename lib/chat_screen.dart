@@ -43,7 +43,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(''),
+        title: const Text('', semanticsLabel: 'Chat Screen'),
       ),
       body: Column(
         children: [
@@ -110,12 +110,17 @@ class _ChatScreenState extends State<ChatScreen> {
                             : Colors.grey[300],
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      child: Text(
-                        message['text'],
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          color:
-                              isSentByCurrentUser ? Colors.white : Colors.black,
+                      child: Semantics(
+                        label:
+                            'Message from ${isSentByCurrentUser ? "you" : "receiver"}: ${message['text']}',
+                        child: Text(
+                          message['text'],
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            color: isSentByCurrentUser
+                                ? Colors.white
+                                : Colors.black,
+                          ),
                         ),
                       ),
                     ),
@@ -136,12 +141,15 @@ class _ChatScreenState extends State<ChatScreen> {
       child: Row(
         children: [
           Expanded(
-            child: TextField(
-              controller: _messageController,
-              decoration: InputDecoration(
-                hintText: 'Type a message',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20.0),
+            child: Semantics(
+              label: 'Type a message',
+              child: TextField(
+                controller: _messageController,
+                decoration: InputDecoration(
+                  hintText: 'Type a message',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
                 ),
               ),
             ),
@@ -149,6 +157,7 @@ class _ChatScreenState extends State<ChatScreen> {
           IconButton(
             icon: const Icon(Icons.send),
             onPressed: _sendMessage,
+            tooltip: 'Send message',
           ),
         ],
       ),

@@ -52,7 +52,7 @@ class ChatsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chats'),
+        title: const Text('Chats', semanticsLabel: 'Chats'),
       ),
       body: StreamBuilder<List<String>>(
         stream: fetchChatUsers(),
@@ -84,19 +84,23 @@ class ChatsScreen extends StatelessWidget {
                   }
 
                   DocumentSnapshot user = snapshot.data!;
-                  return ListTile(
-                    title: Text(user['first_name'] + ' ' + user['last_name']),
-                    subtitle: Text(user['username']),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ChatScreen(
-                            receiverId: user.id,
+                  return Semantics(
+                    label:
+                        'Open chat with ${user['first_name']} ${user['last_name']}',
+                    child: ListTile(
+                      title: Text(user['first_name'] + ' ' + user['last_name']),
+                      subtitle: Text(user['username']),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChatScreen(
+                              receiverId: user.id,
+                            ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   );
                 },
               );

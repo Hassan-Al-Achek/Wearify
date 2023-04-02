@@ -47,42 +47,54 @@ class PublicProfileScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircleAvatar(
-                      radius: 50,
-                      backgroundColor: Colors.grey,
-                      backgroundImage: _getAvatarImage(userData),
-                      child: _getAvatarImage(userData) == null
-                          ? const Icon(Icons.person, size: 50)
-                          : null,
+                    Semantics(
+                      label: 'User avatar',
+                      child: CircleAvatar(
+                        radius: 50,
+                        backgroundColor: Colors.grey,
+                        backgroundImage: _getAvatarImage(userData),
+                        child: _getAvatarImage(userData) == null
+                            ? const Icon(Icons.person, size: 50)
+                            : null,
+                      ),
                     ),
                     const SizedBox(width: 20),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                ChatScreen(receiverId: userId),
-                          ),
-                        );
-                      },
-                      child: const Icon(
-                        Icons.chat_rounded,
-                        size: 32,
-                        color: Colors.blue,
+                    Semantics(
+                      label: 'Chat with user',
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  ChatScreen(receiverId: userId),
+                            ),
+                          );
+                        },
+                        child: const Icon(
+                          Icons.chat_rounded,
+                          size: 32,
+                          color: Colors.blue,
+                        ),
                       ),
                     ),
                   ],
                 ),
                 const SizedBox(height: 10),
-                Text(
-                  'Full Name: ${userData['first_name']} ${userData['last_name']}',
-                  style: const TextStyle(fontSize: 18),
+                Semantics(
+                  label: 'Full Name',
+                  child: Text(
+                    'Full Name: ${userData['first_name']} ${userData['last_name']}',
+                    style: const TextStyle(fontSize: 18),
+                  ),
                 ),
                 const SizedBox(height: 10),
-                Text(
-                  'Username: @${userData['username']}',
-                  style: const TextStyle(fontSize: 18),
+                Semantics(
+                  label: 'username',
+                  child: Text(
+                    'Username: @${userData['username']}',
+                    style: const TextStyle(fontSize: 18),
+                  ),
                 ),
               ],
             ),

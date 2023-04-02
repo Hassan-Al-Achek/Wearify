@@ -40,23 +40,35 @@ class UploadImagesStepState extends State<UploadImagesStep>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextButton.icon(
-          onPressed: _pickImage,
-          icon: const Icon(Icons.add_a_photo),
-          label: const Text('Select Images'),
+        Semantics(
+          button: true,
+          label: 'Select images to upload',
+          child: TextButton.icon(
+            onPressed: _pickImage,
+            icon: const Icon(Icons.add_a_photo),
+            label: const Text('Select Images'),
+          ),
         ),
         Wrap(
           spacing: 8,
           runSpacing: 8,
           children: _images
+              .asMap()
               .map(
-                (image) => Image.file(
-                  File(image.path),
-                  width: 100,
-                  height: 100,
-                  fit: BoxFit.cover,
+                (index, image) => MapEntry(
+                  index,
+                  Semantics(
+                    label: 'Image ${index + 1}',
+                    child: Image.file(
+                      File(image.path),
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
               )
+              .values
               .toList(),
         ),
       ],

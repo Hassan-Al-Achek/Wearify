@@ -160,18 +160,26 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TextButton.icon(
-              onPressed: controlsDetails.onStepCancel,
-              icon: const Icon(Icons.arrow_back_ios_new_rounded),
-              label: const Text('Previous'),
+            Semantics(
+              button: true,
+              label: 'Previous step',
+              child: TextButton.icon(
+                onPressed: controlsDetails.onStepCancel,
+                icon: const Icon(Icons.arrow_back_ios_new_rounded),
+                label: const Text('Previous'),
+              ),
             ),
             Row(
               children: [
-                const Text(
-                  'Next',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontWeight: FontWeight.w500,
+                Semantics(
+                  button: true,
+                  label: 'Next step',
+                  child: const Text(
+                    'Next',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
                 TextButton.icon(

@@ -76,116 +76,138 @@ class DescriptionStepState extends State<DescriptionStep>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Gender dropdown
-        DropdownButton<Gender>(
-          value: _selectedGender,
-          onChanged: (Gender? newValue) {
-            setState(() {
-              _selectedGender = newValue!;
-            });
-          },
-          items: const <DropdownMenuItem<Gender>>[
-            DropdownMenuItem<Gender>(
-              value: Gender.male,
-              child: Text('Male'),
-            ),
-            DropdownMenuItem<Gender>(
-              value: Gender.female,
-              child: Text('Female'),
-            ),
-          ],
+        Semantics(
+          label: 'Select gender',
+          child:
+              // Gender dropdown
+              DropdownButton<Gender>(
+            value: _selectedGender,
+            onChanged: (Gender? newValue) {
+              setState(() {
+                _selectedGender = newValue!;
+              });
+            },
+            items: const <DropdownMenuItem<Gender>>[
+              DropdownMenuItem<Gender>(
+                value: Gender.male,
+                child: Text('Male'),
+              ),
+              DropdownMenuItem<Gender>(
+                value: Gender.female,
+                child: Text('Female'),
+              ),
+            ],
+          ),
         ),
 
         // Clothes type dropdown
-        DropdownButton<ClothesType>(
-          value: _selectedClothesType,
-          onChanged: (ClothesType? newValue) {
-            setState(() {
-              _selectedClothesType = newValue!;
-              _selectedSize = null; // Reset the selected size
-            });
-          },
-          items: ClothesType.values
-              .map<DropdownMenuItem<ClothesType>>((clothesType) {
-            return DropdownMenuItem<ClothesType>(
-              value: clothesType,
-              child: Text(clothesType.toString().split('.').last),
-            );
-          }).toList(),
+        Semantics(
+          label: 'Select clothes type',
+          child: DropdownButton<ClothesType>(
+            value: _selectedClothesType,
+            onChanged: (ClothesType? newValue) {
+              setState(() {
+                _selectedClothesType = newValue!;
+                _selectedSize = null; // Reset the selected size
+              });
+            },
+            items: ClothesType.values
+                .map<DropdownMenuItem<ClothesType>>((clothesType) {
+              return DropdownMenuItem<ClothesType>(
+                value: clothesType,
+                child: Text(clothesType.toString().split('.').last),
+              );
+            }).toList(),
+          ),
         ),
 
         // Custom clothes type input
         if (_selectedClothesType == ClothesType.others)
-          TextField(
-            onChanged: (String value) {
-              setState(() {
-                _customClothesType = value;
-              });
-            },
-            decoration: const InputDecoration(
-              labelText: 'Custom Clothes Type',
-              hintText: 'Enter a custom clothes type',
+          Semantics(
+            label: 'Enter custom clothes type',
+            child: TextField(
+              onChanged: (String value) {
+                setState(() {
+                  _customClothesType = value;
+                });
+              },
+              decoration: const InputDecoration(
+                labelText: 'Custom Clothes Type',
+                hintText: 'Enter a custom clothes type',
+              ),
             ),
           ),
 
         // Size dropdown
-        DropdownButton<String>(
-          value: _selectedSize,
-          onChanged: (String? newValue) {
-            setState(() {
-              _selectedSize = newValue;
-            });
-          },
-          items: sizes.map<DropdownMenuItem<String>>((size) {
-            return DropdownMenuItem<String>(
-              value: size,
-              child: Text(size),
-            );
-          }).toList(),
+        Semantics(
+          label: 'Select size',
+          child: DropdownButton<String>(
+            value: _selectedSize,
+            onChanged: (String? newValue) {
+              setState(() {
+                _selectedSize = newValue;
+              });
+            },
+            items: sizes.map<DropdownMenuItem<String>>((size) {
+              return DropdownMenuItem<String>(
+                value: size,
+                child: Text(size),
+              );
+            }).toList(),
+          ),
         ),
 
         // In case the size does not exist the user can enter a one
         if (_selectedSize == 'Others')
-          TextField(
-            onChanged: (String value) {
-              setState(() {
-                _customSize = value;
-              });
-            },
-            decoration: const InputDecoration(
-              labelText: 'Custom Size',
-              hintText: 'Enter a custom size',
+          Semantics(
+            label: 'Enter custom size',
+            child: TextField(
+              onChanged: (String value) {
+                setState(() {
+                  _customSize = value;
+                });
+              },
+              decoration: const InputDecoration(
+                labelText: 'Custom Size',
+                hintText: 'Enter a custom size',
+              ),
             ),
           ),
 
         // Quality radio buttons
         // Quality radio buttons
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: Quality.values.map<Widget>((quality) {
-            return ListTile(
-              title: Text(quality.toString().split('.').last),
-              leading: Radio<Quality>(
-                value: quality,
-                groupValue: _selectedQuality,
-                onChanged: (Quality? newValue) {
-                  setState(() {
-                    _selectedQuality = newValue!;
-                  });
-                },
-                activeColor: Colors.blue,
-              ),
-            );
-          }).toList(),
+        Semantics(
+          label: 'Select quality',
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: Quality.values.map<Widget>((quality) {
+              return ListTile(
+                title: Text(quality.toString().split('.').last),
+                leading: Radio<Quality>(
+                  value: quality,
+                  groupValue: _selectedQuality,
+                  onChanged: (Quality? newValue) {
+                    setState(() {
+                      _selectedQuality = newValue!;
+                    });
+                  },
+                  activeColor: Colors.blue,
+                ),
+              );
+            }).toList(),
+          ),
         ),
 
         // Description text field
-        TextField(
-          controller: _descriptionController,
-          maxLines: 4,
-          decoration: const InputDecoration(
-            labelText: 'Description',
-            hintText: 'Enter a short description for your post',
+        Semantics(
+          label: 'Enter description',
+          child: TextField(
+            controller: _descriptionController,
+            maxLines: 4,
+            decoration: const InputDecoration(
+              labelText: 'Description',
+              hintText: 'Enter a short description for your post',
+            ),
           ),
         ),
       ],
