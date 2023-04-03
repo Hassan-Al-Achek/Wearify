@@ -1,8 +1,11 @@
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:wearify/chats_screen.dart';
 import 'package:wearify/post_item.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:wearify/users_list_screen.dart';
+import 'package:wearify/app_theme.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({Key? key}) : super(key: key);
@@ -39,6 +42,15 @@ class _ExploreScreenState extends State<ExploreScreen> {
     super.dispose();
   }
 
+  void _openUsersList() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const UsersListScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,19 +76,48 @@ class _ExploreScreenState extends State<ExploreScreen> {
           );
         },
       ),
-      floatingActionButton: Semantics(
-        label: 'Open chats screen',
-        child: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ChatsScreen(),
-              ),
-            );
-          },
-          child: const Icon(Icons.chat),
-        ),
+      floatingActionButton: SpeedDial(
+        icon: Icons.menu,
+        activeIcon: Icons.close,
+        buttonSize: const Size(56.0, 56.0),
+        visible: true,
+        closeManually: false,
+        renderOverlay: false,
+        curve: Curves.bounceIn,
+        overlayColor: Colors.black,
+        overlayOpacity: 0.5,
+        backgroundColor: secondaryColor,
+        foregroundColor: Colors.white,
+        elevation: 8.0,
+        children: [
+          SpeedDialChild(
+            child: const Icon(
+              Icons.chat,
+              color: Colors.white,
+            ),
+            backgroundColor: primaryColor,
+            label: 'Open chats screen',
+            labelStyle: const TextStyle(fontSize: 18.0),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ChatsScreen(),
+                ),
+              );
+            },
+          ),
+          SpeedDialChild(
+            child: const Icon(
+              Icons.people,
+              color: Colors.white,
+            ),
+            backgroundColor: primaryColor,
+            label: 'Open users list',
+            labelStyle: const TextStyle(fontSize: 18.0),
+            onTap: _openUsersList,
+          ),
+        ],
       ),
     );
   }
