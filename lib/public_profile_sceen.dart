@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:wearify/chat_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:wearify/followers_screen.dart';
+import 'package:wearify/following_screen.dart';
 import 'package:wearify/post_item.dart';
 
 class PublicProfileScreen extends StatefulWidget {
@@ -231,7 +233,14 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          // TODO: Navigate to the followers list screen
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => FollowersScreen(
+                                userID: widget.userId,
+                              ),
+                            ),
+                          );
                         },
                         child: Semantics(
                           label: 'Followers count',
@@ -244,7 +253,14 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                       const SizedBox(width: 20),
                       GestureDetector(
                         onTap: () {
-                          // TODO: Navigate to the following list screen
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => FollowingScreen(
+                                userID: widget.userId,
+                              ),
+                            ),
+                          );
                         },
                         child: Semantics(
                           label: 'Following count',
