@@ -17,6 +17,13 @@ class PublicProfileScreen extends StatelessWidget {
     }
   }
 
+  Map<String, int> _getFollowersFollowingCount(Map<String, dynamic> userData) {
+    int followersCount = userData['followers']?['userIDs']?.length ?? 0;
+    int followingCount = userData['following']?['userIDs']?.length ?? 0;
+
+    return {'followers': followersCount, 'following': followingCount};
+  }
+
   @override
   Widget build(BuildContext context) {
     CollectionReference clientsCollection =
@@ -96,6 +103,37 @@ class PublicProfileScreen extends StatelessWidget {
                       'Username: @${userData['username']}',
                       style: const TextStyle(fontSize: 18),
                     ),
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          // TODO: Navigate to the followers list screen
+                        },
+                        child: Semantics(
+                          label: 'Followers count',
+                          child: Text(
+                            'Followers: ${_getFollowersFollowingCount(userData)['followers']}',
+                            style: const TextStyle(fontSize: 18),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 20),
+                      GestureDetector(
+                        onTap: () {
+                          // TODO: Navigate to the following list screen
+                        },
+                        child: Semantics(
+                          label: 'Following count',
+                          child: Text(
+                            'Following: ${_getFollowersFollowingCount(userData)['following']}',
+                            style: const TextStyle(fontSize: 18),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 20),
                   Text(

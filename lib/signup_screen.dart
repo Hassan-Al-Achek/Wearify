@@ -86,6 +86,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
           .createUserWithEmailAndPassword(
               email: _emailController.text, password: _passwordController.text);
 
+      // Create the followers and following dictionary with the userID and username parameters
+      Map<String, dynamic> following = {'userIDs': [], 'userNames': []};
+      Map<String, dynamic> followers = {'userIDs': [], 'userNames': []};
+
       // Save the user's additional information in Firestore
       await FirebaseFirestore.instance
           .collection('clients')
@@ -98,6 +102,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         'phone_number': _formattedPhoneNumber,
         'date_of_birth': _selectedDateOfBirth,
         'gender': _selectedGender,
+        'following': following,
+        'followers': followers
         // Add the address info (e.g. 'address': _selectedAddress)
       });
 
