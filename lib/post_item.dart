@@ -156,7 +156,10 @@ class _PostItemState extends State<PostItem> {
                     ),
                   ),
                 ),
-                title: Text(username),
+                title: Text(
+                  username,
+                  style: const TextStyle(fontSize: 18, color: Colors.black),
+                ),
               ),
               SizedBox(
                 height: 300,

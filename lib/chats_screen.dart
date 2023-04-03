@@ -88,8 +88,14 @@ class ChatsScreen extends StatelessWidget {
                     label:
                         'Open chat with ${user['first_name']} ${user['last_name']}',
                     child: ListTile(
-                      title: Text(user['first_name'] + ' ' + user['last_name']),
-                      subtitle: Text(user['username']),
+                      title: Text(
+                        user['first_name'] + ' ' + user['last_name'],
+                        style:
+                            const TextStyle(fontSize: 18, color: Colors.black),
+                      ),
+                      subtitle: Text(
+                        user['username'],
+                      ),
                       onTap: () {
                         Navigator.push(
                           context,

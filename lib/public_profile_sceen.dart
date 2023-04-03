@@ -143,10 +143,14 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                         label: 'User avatar',
                         child: CircleAvatar(
                           radius: 50,
-                          backgroundColor: Colors.grey,
+                          backgroundColor: Colors.blue,
                           backgroundImage: _getAvatarImage(userData),
                           child: _getAvatarImage(userData) == null
-                              ? const Icon(Icons.person, size: 50)
+                              ? const Icon(
+                                  Icons.person,
+                                  size: 50,
+                                  color: Colors.white,
+                                )
                               : null,
                         ),
                       ),

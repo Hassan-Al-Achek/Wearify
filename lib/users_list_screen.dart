@@ -50,12 +50,17 @@ class UsersListScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       CircleAvatar(
+                        backgroundColor: Colors.blue,
                         backgroundImage: userData['avatar_url'] != null
                             ? CachedNetworkImageProvider(
                                 userData['avatar_url'] as String)
                             : null,
                         child: userData['avatar_url'] == null
-                            ? const Icon(Icons.person, size: 30)
+                            ? const Icon(
+                                Icons.person,
+                                size: 30,
+                                color: Colors.white,
+                              )
                             : null,
                       ),
                       const SizedBox(width: 16),

@@ -93,12 +93,19 @@ class _FollowingScreenState extends State<FollowingScreen> {
 
                   return ListTile(
                     leading: CircleAvatar(
+                      backgroundColor: Colors.blue,
                       backgroundImage: _getAvatarImage(followingData),
                       child: _getAvatarImage(followingData) == null
-                          ? const Icon(Icons.person)
+                          ? const Icon(
+                              Icons.person,
+                              color: Colors.white,
+                            )
                           : null,
                     ),
-                    title: Text('@${followingData['username']}'),
+                    title: Text(
+                      '@${followingData['username']}',
+                      style: const TextStyle(fontSize: 18, color: Colors.black),
+                    ),
                   );
                 },
               );

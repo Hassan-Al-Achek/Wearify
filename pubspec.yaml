@@ -54,6 +54,7 @@ dependencies:
   shimmer: ^2.0.0
   async: ^2.10.0
   flutter_speed_dial: ^6.2.0
+  faker: ^2.1.0
 
 dev_dependencies:
   flutter_test:

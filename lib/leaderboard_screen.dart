@@ -99,7 +99,10 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
       leading: CircleAvatar(
         backgroundImage: NetworkImage(avatarUrl),
       ),
-      title: Text('Top ${index + 1}: $username'),
+      title: Text(
+        'Top ${index + 1}: $username',
+        style: const TextStyle(fontSize: 18, color: Colors.black),
+      ),
       trailing: _xpWidget(xp),
     );
   }
@@ -109,7 +112,10 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
       leading: CircleAvatar(
         backgroundImage: NetworkImage(avatarUrl),
       ),
-      title: Text(username),
+      title: Text(
+        username,
+        style: const TextStyle(fontSize: 18, color: Colors.black),
+      ),
       trailing: _xpWidget(xp),
     );
   }
