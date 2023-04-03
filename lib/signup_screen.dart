@@ -107,6 +107,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
         // Add the address info (e.g. 'address': _selectedAddress)
       });
 
+      // * Maybe we will change the way the following and followers
+      // * works
+      // ! FirebaseFirestore.instance
+      // !    .collection('clients')
+      // !    .doc(userCredential.user?.uid)
+      // !   .collection("followers");
+
+      // ! FirebaseFirestore.instance
+      // !    .collection('clients')
+      // !    .doc(userCredential.user?.uid)
+      // !    .collection("following");
+
       CollectionReference leaderboardRef =
           FirebaseFirestore.instance.collection('leaderboard');
       await leaderboardRef.doc(userCredential.user?.uid).set({
