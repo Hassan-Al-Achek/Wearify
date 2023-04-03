@@ -76,7 +76,7 @@ class _ChatScreenState extends State<ChatScreen> {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator();
+          return const SkeletonLoading();
         }
 
         List<DocumentSnapshot> messages = snapshot.data!.docs;
@@ -161,6 +161,63 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class SkeletonMessage extends StatelessWidget {
+  final bool isSentByCurrentUser;
+
+  const SkeletonMessage({super.key, required this.isSentByCurrentUser});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+      child: Row(
+        mainAxisAlignment: isSentByCurrentUser
+            ? MainAxisAlignment.end
+            : MainAxisAlignment.start,
+        children: [
+          Container(
+            constraints: BoxConstraints(
+              maxWidth: MediaQuery.of(context).size.width * 0.6,
+            ),
+            padding: const EdgeInsets.all(10.0),
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: SizedBox(
+              width: 150,
+              height: 20,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4.0),
+                  color: Colors.grey[200],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SkeletonLoading extends StatelessWidget {
+  const SkeletonLoading({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      reverse: true,
+      itemCount: 10, // You can customize the number of placeholders
+      itemBuilder: (BuildContext context, int index) {
+        return SkeletonMessage(
+          isSentByCurrentUser: index % 2 == 0,
+        );
+      },
     );
   }
 }

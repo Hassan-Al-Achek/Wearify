@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:wearify/public_profile_sceen.dart';
 
 class UsersListScreen extends StatelessWidget {
@@ -30,7 +31,7 @@ class UsersListScreen extends StatelessWidget {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            return _skeletonLoader(context);
           }
 
           return ListView.builder(
@@ -78,4 +79,43 @@ class UsersListScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget _skeletonLoader(BuildContext context) {
+  return Shimmer.fromColors(
+    baseColor: Colors.grey[300]!,
+    highlightColor: Colors.grey[100]!,
+    child: Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            width: 48.0,
+            height: 48.0,
+            color: Colors.white,
+          ),
+          const SizedBox(width: 8.0),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  width: double.infinity,
+                  height: 14.0,
+                  color: Colors.white,
+                ),
+                const SizedBox(height: 8.0),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  height: 14.0,
+                  color: Colors.white,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
 }
