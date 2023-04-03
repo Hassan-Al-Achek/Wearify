@@ -60,7 +60,7 @@ class UsersListScreen extends StatelessWidget {
                       ),
                       const SizedBox(width: 16),
                       Text(
-                        userData['username'] as String,
+                        '@${userData['username'] as String}',
                         style: const TextStyle(fontSize: 18),
                       ),
                     ],
