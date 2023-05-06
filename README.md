@@ -3,6 +3,9 @@
 ## Simplified version of the application flow
 ![alt text](Wearify.drawio.png)
 
+## Video:
+[![Wearify Flutter App](https://img.youtube.com/vi/A1ievLALLVI/0.jpg)](https://www.youtube.com/watch?v=A1ievLALLVI)
+
 ## Run
 To run your Flutter code from this GitHub repo, you needs to follow these steps:
 
